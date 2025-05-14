@@ -59,6 +59,9 @@ java {
 
 application {
     mainClass.set("com.example.FlinkFlightStreamingJob")
+    
+    // Define application for running different main classes
+    applicationDefaultJvmArgs = listOf("-Dlog4j.configurationFile=logback.xml")
 }
 
 tasks.test {
@@ -83,4 +86,33 @@ dockerCompose {
     useComposeFiles.set(listOf("docker-compose.yaml"))
     startedServices.set(listOf("kafka", "schema-registry"))
     captureContainersOutput.set(true)
+}
+
+// Avro configuration
+avro {
+    stringType.set("String")
+    fieldVisibility.set("PRIVATE")
+    outputCharacterEncoding.set("UTF-8")
+}
+
+// Copy Avro schema files to resources
+tasks.register<Copy>("copyAvroSchemas") {
+    from("src/main/avro")
+    into("src/main/resources/avro")
+    include("**/*.avsc")
+}
+
+tasks.named("processResources") {
+    dependsOn("copyAvroSchemas")
+}
+
+// Create resources directory in test
+tasks.register<Copy>("copyAvroSchemasToTest") {
+    from("src/main/avro")
+    into("src/test/resources/avro")
+    include("**/*.avsc")
+}
+
+tasks.named("processTestResources") {
+    dependsOn("copyAvroSchemasToTest")
 }
