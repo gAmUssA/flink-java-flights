@@ -1,36 +1,55 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base"
+    "config:recommended"
   ],
   "packageRules": [
     {
-      "matchPackagePatterns": ["^org\\.apache\\.flink"],
       "groupName": "Apache Flink dependencies",
-      "schedule": ["every month"]
+      "schedule": [
+        "every month"
+      ],
+      "matchPackageNames": [
+        "/^org\\.apache\\.flink/"
+      ]
     },
     {
-      "matchPackagePatterns": ["^org\\.apache\\.kafka"],
       "groupName": "Apache Kafka dependencies",
-      "schedule": ["every month"]
+      "schedule": [
+        "every month"
+      ],
+      "matchPackageNames": [
+        "/^org\\.apache\\.kafka/"
+      ]
     },
     {
-      "matchPackagePatterns": ["^org\\.junit"],
-      "groupName": "JUnit dependencies"
+      "groupName": "JUnit dependencies",
+      "matchPackageNames": [
+        "/^org\\.junit/"
+      ]
     },
     {
-      "matchPackagePatterns": ["^org\\.slf4j", "^ch\\.qos\\.logback"],
-      "groupName": "Logging dependencies"
+      "groupName": "Logging dependencies",
+      "matchPackageNames": [
+        "/^org\\.slf4j/",
+        "/^ch\\.qos\\.logback/"
+      ]
     }
   ],
   "gradle": {
-    "fileMatch": ["(^|/)build\\.gradle\\.kts$"]
+    "managerFilePatterns": [
+      "/(^|/)build\\.gradle\\.kts$/"
+    ]
   },
   "ignoreDeps": [],
-  "labels": ["dependencies"],
+  "labels": [
+    "dependencies"
+  ],
   "prHourlyLimit": 2,
   "prConcurrentLimit": 10,
-  "schedule": ["every weekend"],
+  "schedule": [
+    "every weekend"
+  ],
   "semanticCommits": "enabled",
   "semanticCommitType": "chore",
   "semanticCommitScope": "deps",
@@ -40,6 +59,8 @@
   "platformAutomerge": false,
   "lockFileMaintenance": {
     "enabled": true,
-    "schedule": ["before 5am on monday"]
+    "schedule": [
+      "before 5am on monday"
+    ]
   }
 }
