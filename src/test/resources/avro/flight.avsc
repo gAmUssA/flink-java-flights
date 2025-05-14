@@ -1,0 +1,83 @@
+{
+  "namespace": "com.example.schema",
+  "type": "record",
+  "name": "Flight",
+  "doc": "Schema for flight events with departure information",
+  "fields": [
+    {
+      "name": "flightNumber",
+      "type": "string",
+      "doc": "Unique flight identifier (e.g., 'AA123')"
+    },
+    {
+      "name": "airline",
+      "type": "string",
+      "doc": "Name of the airline operating the flight"
+    },
+    {
+      "name": "origin",
+      "type": "string",
+      "doc": "IATA airport code for origin (e.g., 'LAX')"
+    },
+    {
+      "name": "destination",
+      "type": "string",
+      "doc": "IATA airport code for destination (e.g., 'JFK')"
+    },
+    {
+      "name": "scheduledDeparture",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      },
+      "doc": "Scheduled departure time in milliseconds since epoch"
+    },
+    {
+      "name": "actualDeparture",
+      "type": [
+        "null",
+        {
+          "type": "long",
+          "logicalType": "timestamp-millis"
+        }
+      ],
+      "default": null,
+      "doc": "Actual departure time in milliseconds since epoch, null if not departed yet"
+    },
+    {
+      "name": "status",
+      "type": {
+        "type": "enum",
+        "name": "FlightStatus",
+        "symbols": ["SCHEDULED", "DEPARTED", "DELAYED", "CANCELLED"]
+      },
+      "doc": "Current status of the flight"
+    },
+    {
+      "name": "delayMinutes",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null,
+      "doc": "Delay in minutes, null if not delayed or not departed yet"
+    },
+    {
+      "name": "aircraft",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Aircraft type (e.g., 'Boeing 737')"
+    },
+    {
+      "name": "eventTimestamp",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      },
+      "doc": "Timestamp when this event was generated"
+    }
+  ]
+}
