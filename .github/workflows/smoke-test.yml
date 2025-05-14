@@ -100,20 +100,22 @@ jobs:
 
     - name: Run smoke test
       run: |
-        # Run the application for a short time
+        # Run the application with smoke test flag
+        echo "Starting application in smoke test mode..."
         java -jar build/libs/*.jar --smoke-test &
         APP_PID=$!
         
-        # Wait for a short period to allow the application to start
-        sleep 30
+        # Wait for the application to complete its smoke test
+        # The application now has built-in sleep for smoke test mode
+        echo "Waiting for smoke test to complete..."
+        wait $APP_PID
+        EXIT_CODE=$?
         
-        # Check if the application is still running
-        if ps -p $APP_PID > /dev/null; then
-          echo "Application is running successfully"
-          kill $APP_PID
+        if [ $EXIT_CODE -eq 0 ]; then
+          echo "✅ Smoke test completed successfully"
           exit 0
         else
-          echo "Application failed to start or crashed"
+          echo "❌ Smoke test failed with exit code: $EXIT_CODE"
           exit 1
         fi
       
