@@ -95,8 +95,8 @@ jobs:
         sleep 10
         
         # Create required topics
-        docker exec kafka kafka-topics.sh --bootstrap-server localhost:9092 --create --topic flight-events --partitions 1 --replication-factor 1
-        docker exec kafka kafka-topics.sh --bootstrap-server localhost:9092 --create --topic flight-alerts --partitions 1 --replication-factor 1
+        docker exec kafka /opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --topic flight-events --partitions 1 --replication-factor 1
+        docker exec kafka /opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --topic flight-alerts --partitions 1 --replication-factor 1
 
     - name: Run smoke test
       run: |
