@@ -22,7 +22,7 @@ repositories {
 // Define Flink version to use
 val flinkVersion = "2.0.0"
 val kafkaVersion = "4.0.0"
-val avroVersion = "1.11.3"
+val avroVersion = "1.12.0"
 val confluentVersion = "7.9.1"
 
 dependencies {
