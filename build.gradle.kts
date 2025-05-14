@@ -20,7 +20,7 @@ repositories {
 }
 
 // Define Flink version to use
-val flinkVersion = "1.20.1"
+val flinkVersion = "2.0.0"
 val kafkaVersion = "4.0.0"
 val avroVersion = "1.11.3"
 val confluentVersion = "7.5.1"
@@ -31,7 +31,7 @@ dependencies {
     implementation("org.apache.flink:flink-clients:${flinkVersion}")
     implementation("org.apache.flink:flink-table-api-java-bridge:${flinkVersion}")
     implementation("org.apache.flink:flink-table-planner-loader:${flinkVersion}")
-    implementation("org.apache.flink:flink-connector-kafka:3.4.0-1.20")
+    implementation("org.apache.flink:flink-connector-kafka:4.0.0-2.0")
     
     // Avro and Schema Registry
     implementation("org.apache.flink:flink-avro:${flinkVersion}")
