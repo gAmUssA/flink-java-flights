@@ -1,7 +1,7 @@
 plugins {
     id("java")
     id("com.github.johnrengelman.shadow") version "7.1.2"
-    id("com.avast.gradle.docker-compose") version "0.16.11"
+    id("com.avast.gradle.docker-compose") version "0.17.12"
     id("com.github.davidmc24.gradle.plugin.avro") version "1.9.1"
     id("application")
 }
