@@ -23,7 +23,7 @@ repositories {
 val flinkVersion = "2.0.0"
 val kafkaVersion = "4.0.0"
 val avroVersion = "1.11.3"
-val confluentVersion = "7.9.1"
+val confluentVersion = "8.0.0"
 
 dependencies {
     // Flink core dependencies
